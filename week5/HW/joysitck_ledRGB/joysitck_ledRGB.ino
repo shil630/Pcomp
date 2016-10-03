@@ -30,8 +30,8 @@ void loop() {
    Serial.println(joyYVal);
 //   delay(100);
 
-   ledValR = map(joyXVal, 0, 1023, 1, 225);
-   ledValG = map(joyYVal, 0, 1023, 1, 225);
+   ledValR = map(joyXVal, 0, 1023, 1, 255);
+   ledValG = map(joyYVal, 0, 1023, 1, 255);
    ledValB = map(joyYVal, 0, 1023, 255, 1);
    
     analogWrite(ledPinR, ledValR);
