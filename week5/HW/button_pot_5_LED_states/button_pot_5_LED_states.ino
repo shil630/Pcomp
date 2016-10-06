@@ -24,16 +24,21 @@ void setup() {
   pinMode(ledPin1, OUTPUT);
   pinMode(ledPin2, OUTPUT);
   pinMode(ledPin3, OUTPUT);
+  
 }
 
 void loop() {
-
+  
+  //set pot value
   potVal = analogRead(potPin);
 
+  //check button state 
+  //debounce
   int oldButtonVal = digitalRead(buttonPin);
   delay(debounceWait);
   int newButtonVal = digitalRead(buttonPin);
 
+  //make 5 states
   if (oldButtonVal != newButtonVal) {
 
     if (newButtonVal == LOW) {
@@ -44,13 +49,12 @@ void loop() {
         state = 0;
       }
 
-      Serial.print("current state: ");
-      Serial.println(state);
-
     } 
 
   }
 
+  //state 0: all low, 1: all high, 2: pot-controled blink
+  //3: pot_controled which led, 4: pot-controled brightness
   if (state == 0) {
 
     ledVal1 = LOW;
@@ -115,6 +119,7 @@ void loop() {
 
   }
 
+  //make 2 write methods
   if (state <= 3) {
     
     digitalWrite(ledPin1, ledVal1);
